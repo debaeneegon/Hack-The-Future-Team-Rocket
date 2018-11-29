@@ -68,7 +68,7 @@
                 });
 
 
-                // Set up the markers on the map
+                // Set up the first marker
                 var startMarker = new google.maps.Marker({
                     //51.170787, 4.432715
                     position: {lat: 51.170787, lng: 4.432730},
@@ -82,54 +82,87 @@
                     startStopTimer();
                 });
 
-                // Set up the markers on the map
-                var randomMarker2 = new google.maps.Marker({
-                    position: {lat: 51.165935, lng: 4.434447},
-                    map: panorama,
-                    icon: 'http://maps.google.com/mapfiles/kml/pal2/icon40.png',
-                    title: 'randomMarker2'
-                });
+                // Set up the rest of the marker
 
-                var ParkingMarker = new google.maps.Marker({
-                    position: {lat: 51.166898, lng: 4.428093},
-                    map: panorama,
-                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
-                    title: 'Parking'
-                });
+                function setupMarker1(lat, lng) {
+                    var marker1 = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: panorama,
+                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
+                        title: marker1
+                    });
 
-                var randomMarker1 = new google.maps.Marker({
-                    position: {lat: 51.169077, lng: 4.430928},
-                    map: panorama,
-                    icon: 'http://maps.google.com/mapfiles/kml/pal3/icon28.png',
-                    title: 'randomMarker1'
-                });
-                google.maps.event.addListener(randomMarker1, "click", function () {
-                    totalPoints = totalPoints + 1;
-                    randomMarker1.setMap(null);
-                    window.alert("you now have: " + totalPoints + " point(s)!");
-                });
-                google.maps.event.addListener(ParkingMarker, "click", function () {
-                    totalPoints = totalPoints + 1;
-                    ParkingMarker.setMap(null);
-                    window.alert("you now have: " + totalPoints + " point(s)!");
+                    google.maps.event.addListener(marker1, "click", function () {
+                        totalPoints = totalPoints + 1;
+                        marker1.setMap(null);
+                        window.alert("you now have: " + totalPoints + " point(s)!");
+                    });
+                }
+                ;
+                  function setupMarker2(lat, lng) {
+                    var marker2 = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: panorama,
+                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
+                        title: marker2
+                    });
 
-                });
-                google.maps.event.addListener(randomMarker2, "click", function () {
-                    totalPoints = totalPoints + 1;
-                    randomMarker2.setMap(null);
-                    window.alert("you now have: " + totalPoints + " point(s)!");
-                });
+                    google.maps.event.addListener(marker2, "click", function () {
+                        totalPoints = totalPoints + 1;
+                        marker2.setMap(null);
+                        window.alert("you now have: " + totalPoints + " point(s)!");
+                    });
+                }
+                ;
+                  function setupMarker3(lat, lng) {
+                    var marker3 = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: panorama,
+                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
+                        title: marker3
+                    });
 
+                    google.maps.event.addListener(marker3, "click", function () {
+                        totalPoints = totalPoints + 1;
+                        marker3.setMap(null);
+                        window.alert("you now have: " + totalPoints + " point(s)!");
+                    });
+                }
+                ;
+                  function setupMarker4(lat, lng) {
+                    var marker4 = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: panorama,
+                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
+                        title: marker4
+                    });
 
-                // We get the map's default panorama and set up some defaults.
-                // Note that we don't yet set it visible.
-                // panorama = map.getStreetView();
-                //panorama.setPosition(astorPlace);
-                //panorama.setPov(/** @type {google.maps.StreetViewPov} */({
-                //  heading: 265,
-                // pitch: 0
-                //}));
-            }
+                    google.maps.event.addListener(marker4, "click", function () {
+                        totalPoints = totalPoints + 1;
+                        marker4.setMap(null);
+                        window.alert("you now have: " + totalPoints + " point(s)!");
+                    });
+                }
+                ;
+                  function setupMarker5(lat, lng) {
+                    var marker5 = new google.maps.Marker({
+                        position: {lat: lat, lng: lng},
+                        map: panorama,
+                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
+                        title: marker5
+                    });
+                    google.maps.event.addListener(marker5, "click", function () {
+                        totalPoints = totalPoints + 1;
+                        marker5.setMap(null);
+                        window.alert("you now have: " + totalPoints + " point(s)!");
+                    });
+                };
+                setupMarker1(51.165935, 4.434447);
+                setupMarker2(51.166898, 4.428093);
+                setupMarker3(51.169077, 4.430928);
+                setupMarker4(51.169503, 4.434775);
+                setupMarker5(51.169148, 4.438088);
+               }
             ;
             function setTime() {
                 ++totalSeconds;
@@ -140,28 +173,23 @@
             }
             ;
             function winEvent() {
-                timerRunnings = false;
-                clearInterval(startATimer);
                 window.alert("Congratz, you have found all flags and it took you " + totalSeconds + "seconds")
-
-
+                startStopTimer();
             }
             ;
             function startStopTimer() {
-                timerRunnings = true;
-                /*if (timerRunnings) {
-                 timerRunnings = false;
-                 } else {
-                 timerRunnings = true;
-                 }*/
                 if (timerRunnings) {
-                   startATimer = setInterval(setTime, 1000);
-                }else{
-                   clearInterval(startATimer);
+                    timerRunnings = false;
+                } else {
+                    timerRunnings = true;
+                }
+                if (timerRunnings) {
+                    startATimer = setInterval(setTime, 1000);
+                } else {
+                    clearInterval(startATimer);
                 }
             }
             ;
-
         </script>
         <script async defer
                 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXmnLdPxrEKSdc0MUPC14PWKIvN-Y77Ts&callback=initMap">
