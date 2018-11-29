@@ -68,17 +68,17 @@
 
 
                 // Set up the markers on the map
-                function setupMarker(lat,lng){
-                    var markerName = new google.maps.Marker({
+                function setupMarker(varName,lat,lng){
+                    varName = new google.maps.Marker({
                         position: { lat:lat,lng:lng},
                         map: panorama,
                         icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
-                        title: markerName
+                        title: varName
                     });
                     
-                    google.maps.event.addListener(markerName, "click", function () {
+                    google.maps.event.addListener(varName, "click", function () {
                         totalPoints = totalPoints + 1;
-                        markerName.setMap(null);
+                        varName.setMap(null);
                         window.alert("you now have: " + totalPoints + " point(s)!");
                     });
                 
@@ -88,7 +88,9 @@
                 
                 
                 console.log("test1");               
-                setupMarker(51.170847,4.432034);
+                setupMarker("test1",51.170847,4.432034);
+                setupMarker("test2",51.170847,4.432034);
+                
                 console.log("test2 ofzo daar");
 
                 // We get the map's default panorama and set up some defaults.
