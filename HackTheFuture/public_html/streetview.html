@@ -33,9 +33,10 @@
             }
         </style>
         <script>
-            var maxScore = 2;
+            var maxScore = 1;
             var totalPoints = 0;
-            var timerRunnings= false;
+            var timerRunnings = false;
+            var startATimer;
         </script>
     </head>
     <body>
@@ -76,7 +77,7 @@
                     title: 'StartMarker'
                 });
                 google.maps.event.addListener(startMarker, "click", function () {
-                    randomMarker1.setMap(null);
+                    startMarker.setMap(null);
                     window.alert("welcome to our little game \nthe goal is to find all flags and to do this in the shortest time possible! \nclick ok if you are ready to go!");
                     startStopTimer();
                 });
@@ -135,22 +136,28 @@
                 console.log(totalSeconds);
                 if (totalPoints === maxScore) {
                     winEvent();
-                    startStopTimer();
                 }
             }
             ;
             function winEvent() {
+                timerRunnings = false;
+                clearInterval(startATimer);
                 window.alert("Congratz, you have found all flags and it took you " + totalSeconds + "seconds")
+
+
             }
             ;
             function startStopTimer() {
+                timerRunnings = true;
+                /*if (timerRunnings) {
+                 timerRunnings = false;
+                 } else {
+                 timerRunnings = true;
+                 }*/
                 if (timerRunnings) {
-                    timerRunnings = false;
-                } else {
-                    timerRunnings = true;
-                }
-                if (timerRunnings) {
-                    setInterval(setTime, 1000);
+                   startATimer = setInterval(setTime, 1000);
+                }else{
+                   clearInterval(startATimer);
                 }
             }
             ;
