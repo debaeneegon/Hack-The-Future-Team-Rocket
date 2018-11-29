@@ -6,11 +6,43 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Find The parts</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style> 
+            #video-bg-wrapper {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: -100;
+                overflow: hidden;
+            }
+            body{
+                background-color: black;
+            }
+            #score{
+                background-color: gold;
+                margin: 20px 200px;
+                text-align: center;
+            }
+        </style>
+        <script>
+            var url_string = window.location.href; //window.location.href
+            var url = new URL(url_string);
+            var c = url.searchParams.get("totalSeconds");
+            console.log(c);
+        </script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div id="video-bg-wrapper">
+            <video autoplay="autoplay" muted="muted" loop="loop" type="video/mp4" src="artifact.mp4">not supported</video>
+        </div>
+        <div id="score">
+            <h1>You managed to find all the pieces of the artifact, good job!</h1>
+            <h2>It took you : <script>document.write(c);</script> seconds</h2>
+            <h3><a href="TheGame.html">click here to start again</a></h3>
+        </div>
     </body>
 </html>
