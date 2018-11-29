@@ -84,84 +84,26 @@
 
                 // Set up the rest of the marker
 
-                function setupMarker1(lat, lng) {
-                    var marker1 = new google.maps.Marker({
+                function setupMarker(varname,lat, lng) {
+                        varname = new google.maps.Marker({
                         position: {lat: lat, lng: lng},
                         map: panorama,
                         icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
-                        title: marker1
+                        title: varname
                     });
 
-                    google.maps.event.addListener(marker1, "click", function () {
+                    google.maps.event.addListener(varname, "click", function () {
                         totalPoints = totalPoints + 1;
-                        marker1.setMap(null);
+                        varname.setMap(null);
                         window.alert("you now have: " + totalPoints + " point(s)!");
                     });
                 }
                 ;
-                  function setupMarker2(lat, lng) {
-                    var marker2 = new google.maps.Marker({
-                        position: {lat: lat, lng: lng},
-                        map: panorama,
-                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
-                        title: marker2
-                    });
-
-                    google.maps.event.addListener(marker2, "click", function () {
-                        totalPoints = totalPoints + 1;
-                        marker2.setMap(null);
-                        window.alert("you now have: " + totalPoints + " point(s)!");
-                    });
-                }
-                ;
-                  function setupMarker3(lat, lng) {
-                    var marker3 = new google.maps.Marker({
-                        position: {lat: lat, lng: lng},
-                        map: panorama,
-                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
-                        title: marker3
-                    });
-
-                    google.maps.event.addListener(marker3, "click", function () {
-                        totalPoints = totalPoints + 1;
-                        marker3.setMap(null);
-                        window.alert("you now have: " + totalPoints + " point(s)!");
-                    });
-                }
-                ;
-                  function setupMarker4(lat, lng) {
-                    var marker4 = new google.maps.Marker({
-                        position: {lat: lat, lng: lng},
-                        map: panorama,
-                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
-                        title: marker4
-                    });
-
-                    google.maps.event.addListener(marker4, "click", function () {
-                        totalPoints = totalPoints + 1;
-                        marker4.setMap(null);
-                        window.alert("you now have: " + totalPoints + " point(s)!");
-                    });
-                }
-                ;
-                  function setupMarker5(lat, lng) {
-                    var marker5 = new google.maps.Marker({
-                        position: {lat: lat, lng: lng},
-                        map: panorama,
-                        icon: 'http://maps.google.com/mapfiles/kml/pal2/icon13.png',
-                        title: marker5
-                    });
-                    google.maps.event.addListener(marker5, "click", function () {
-                        totalPoints = totalPoints + 1;
-                        marker5.setMap(null);
-                        window.alert("you now have: " + totalPoints + " point(s)!");
-                    });
-                };
-                setupMarker1(51.165935, 4.434447);
-                setupMarker2(51.166898, 4.428093);
-                setupMarker3(51.169077, 4.430928);
-                setupMarker4(51.169503, 4.434775);
-                setupMarker5(51.169148, 4.438088);
+                setupMarker("1",51.165935, 4.434447);
+                setupMarker("2",51.166898, 4.428093);
+                setupMarker("3",51.169077, 4.430928);
+                setupMarker("4",51.169503, 4.434775);
+                setupMarker("5",51.169148, 4.438088);
                }
             ;
             function setTime() {
