@@ -33,8 +33,9 @@
             }
         </style>
         <script>
-
+            var maxScore = 2;
             var totalPoints = 0;
+            var timerRunnings= false;
         </script>
     </head>
     <body>
@@ -42,10 +43,11 @@
         <div id="map"></div>
         <script>
             var panorama;
-
+            var totalSeconds = 0;
             function initMap() {
+                //51.170853, 4.432770
                 // var astorPlace = {lat: 51.170847, lng: 4.432034};
-                var startplace = {lat: 51.170847, lng: 4.432034};
+                var startplace = {lat: 51.170853, lng: 4.432770};
 
                 // Set up the map
                 var map = new google.maps.Map(document.getElementById('map'));
@@ -65,7 +67,19 @@
                 });
 
 
-
+                // Set up the markers on the map
+                var startMarker = new google.maps.Marker({
+                    //51.170787, 4.432715
+                    position: {lat: 51.170787, lng: 4.432730},
+                    map: panorama,
+                    icon: 'http://maps.google.com/mapfiles/kml/pal3/icon43.png',
+                    title: 'StartMarker'
+                });
+                google.maps.event.addListener(startMarker, "click", function () {
+                    randomMarker1.setMap(null);
+                    window.alert("welcome to our little game \nthe goal is to find all flags and to do this in the shortest time possible! \nclick ok if you are ready to go!");
+                    startStopTimer();
+                });
 
                 // Set up the markers on the map
                 var randomMarker2 = new google.maps.Marker({
@@ -115,6 +129,31 @@
                 // pitch: 0
                 //}));
             }
+            ;
+            function setTime() {
+                ++totalSeconds;
+                console.log(totalSeconds);
+                if (totalPoints === maxScore) {
+                    winEvent();
+                    startStopTimer();
+                }
+            }
+            ;
+            function winEvent() {
+                window.alert("Congratz, you have found all flags and it took you " + totalSeconds + "seconds")
+            }
+            ;
+            function startStopTimer() {
+                if (timerRunnings) {
+                    timerRunnings = false;
+                } else {
+                    timerRunnings = true;
+                }
+                if (timerRunnings) {
+                    setInterval(setTime, 1000);
+                }
+            }
+            ;
 
         </script>
         <script async defer
