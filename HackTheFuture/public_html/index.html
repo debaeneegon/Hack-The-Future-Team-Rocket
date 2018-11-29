@@ -1,16 +1,53 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-              <img src="https://maps.googleapis.com/maps/api/streetview?size=400x400&location=51.170660, 4.432061&fov=90&heading=235&pitch=10&key=AIzaSyAXmnLdPxrEKSdc0MUPC14PWKIvN-Y77Ts">
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>Street View Side-By-Side</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map, #pano {
+        float: left;
+        height: 100%;
+        width: 45%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="pano"></div>
+    <script>
+
+      function initialize() {
+        var fenway = {lat: 42.345573, lng: -71.098326};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: fenway,
+          zoom: 14
+        });
+        var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('pano'), {
+              position: fenway,
+              pov: {
+                heading: 34,
+                pitch: 10
+              }
+            });
+               // Set up the markers on the map
+        var cafeMarker = new google.maps.Marker({
+            position: {lat: 42.345573, lng: -71.098326},
+            map: map,
+            icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
+            title: 'Cafe'
+        });
+        map.setStreetView(panorama);
+      }
+     
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXmnLdPxrEKSdc0MUPC14PWKIvN-Y77Ts&callback=initialize">
+    </script>
+  </body>
 </html>

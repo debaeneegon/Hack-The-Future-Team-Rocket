@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Overlays Within Street View</title>
+        <style>
+            /* Always set the map height explicitly to define the size of the div
+             * element that contains the map. */
+            #map {
+                height: 100%;
+            }
+            /* Optional: Makes the sample page fill the window. */
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #floating-panel {
+                position: absolute;
+                top: 10px;
+                left: 25%;
+                z-index: 5;
+                background-color: #fff;
+                padding: 5px;
+                border: 1px solid #999;
+                text-align: center;
+                font-family: 'Roboto','sans-serif';
+                line-height: 30px;
+                padding-left: 10px;
+            }
+            #floating-panel {
+                margin-left: -100px;
+            }
+        </style>
+        <script>
+            
+            var totalPoints = 0;
+        </script>
+    </head>
+    <body>
+
+        <div id="map"></div>
+        <script>
+            var panorama;
+
+            function initMap() {
+                var astorPlace = {lat: 51.170847, lng: 4.432034};
+
+                // Set up the map
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: astorPlace,
+                    zoom: 18,
+                });
+
+                // Set up the markers on the map
+                var randomMarker2 = new google.maps.Marker({
+                    position: {lat: 51.165935, lng: 4.434447},
+                    map: map,
+                    icon: 'http://maps.google.com/mapfiles/kml/pal2/icon40.png',
+                    title: 'randomMarker2'
+                });
+
+                var ParkingMarker = new google.maps.Marker({
+                    position: {lat: 51.166898, lng: 4.428093},
+                    map: map,
+                    icon: 'http://maps.google.com/mapfiles/kml/pal4/icon7.png',
+                    title: 'Parking'
+                });
+
+                var randomMarker1 = new google.maps.Marker({
+                    position: {lat: 51.169077, lng: 4.430928},
+                    map: map,
+                    icon: 'http://maps.google.com/mapfiles/kml/pal3/icon28.png',
+                    title: 'randomMarker1'
+                });
+                google.maps.event.addListener(randomMarker1, "click", function () {
+                    totalPoints = totalPoints + 1;
+                    randomMarker1.setMap(null);
+                    window.alert("you now have: " + totalPoints + " point(s)!");
+                });
+                 google.maps.event.addListener(ParkingMarker, "click", function () {
+                    totalPoints = totalPoints + 1;
+                    ParkingMarker.setMap(null);
+                    window.alert("you now have: " + totalPoints + " point(s)!");
+
+                });
+                 google.maps.event.addListener(randomMarker2, "click", function () {
+                     totalPoints = totalPoints + 1;
+                    randomMarker2.setMap(null);
+                    window.alert("you now have: " + totalPoints + " point(s)!");
+                });
+
+
+                // We get the map's default panorama and set up some defaults.
+                // Note that we don't yet set it visible.
+                panorama = map.getStreetView();
+                panorama.setPosition(astorPlace);
+                panorama.setPov(/** @type {google.maps.StreetViewPov} */({
+                    heading: 265,
+                    pitch: 0
+                }));
+            }
+
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXmnLdPxrEKSdc0MUPC14PWKIvN-Y77Ts&callback=initMap">
+        </script>
+    </body>
+</html>
